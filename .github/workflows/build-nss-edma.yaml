@@ -92,6 +92,9 @@ jobs:
           #git clone https://github.com/dgyangxf/luci-app-vlmcsd.git package/feeds/luci/luci-app-vlmcsd
           #git clone https://github.com/im-0/openwrt-package.vlmcsd.git package/utils/vlmcsd
           #git clone https://github.com/sbwml/openwrt-qBittorrent package/feeds/qBittorrent
+          https://github.com/vernesong/OpenClash.git package/feeds/luci/luci-app-openclash
+          https://github.com/kenzok8/openwrt-clashoo.git package/feeds/luci/luci-app-clashoo
+          https://github.com/kenzok8/openwrt-clashoo.git package/utils/clashoo
           ./scripts/feeds list -r nss | grep -q qca-nss-drv && echo "nss feed OK"
 
       - name: Setup configuration and custom files
