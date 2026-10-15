@@ -64,17 +64,28 @@ jobs:
         uses: actions/checkout@v4
         with:
           path: "builder_repo"
-          
+      
       - name: Add custom patches
         run: |
           df -hT
           if [ -d "builder_repo/patches" ] && [ "$(ls -A builder_repo/patches 2>/dev/null)" ]; then
             for patch in builder_repo/patches/*nss-edma.patch; do
-              echo "Applying patch $patch ..."
-              ls -al "$patch" && sha256sum "$patch"
-              [ -f "$patch" ] && git apply --verbose "$patch"
-            done
+             echo "Applying patch $patch ..."
+             ls -al "$patch" && sha256sum "$patch"
+             if [ -f "$patch" ]; then
+              git apply --reject --whitespace=fix --verbose "$patch" || true
+             fi
+           done
           fi
+
+      - name: Upload patch reject files
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: patch-rejects
+          path: '**/*.rej'
+          retention-days: 3
+          if-no-files-found: warn
             
       - name: Update and install feeds
         run: |
