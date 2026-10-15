@@ -21,7 +21,7 @@
 
 1. 拆机，连接TTL线，网线插到WAN口，配置好终端和TFPTD64，插电
 2. TTL终端输入jdqca中断启动过程
-3. 刷入uboot，不需要刷大分区
+3. 刷入uboot，刷入大分区gpt
 4. 断电后按住JOY插电，web进入刷机界面刷入[Release](https://github.com/pmyy-wt/jdc_re-cs-03/releases/latest)的factory.bin
 
 UBoot刷好之后都可以按上面步骤4进入web刷机界面
